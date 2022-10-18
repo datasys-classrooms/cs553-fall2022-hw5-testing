@@ -6,13 +6,13 @@ echoerr()
 }
 
 TEST1="1. Test mysort (C++) with 8 threads and 16GB of data                              "
-TEST1_ARGS="cpp 160000000 data.in data.out 8"
+TEST1_ARGS="1 cpp 160000 data.in data.out 8"
 TEST2="2. Test mysort (C++) with 8 threads and 64GB of data                              "
-TEST2_ARGS="cpp 640000000 data.in data.out 8"
+TEST2_ARGS="2 cpp 640000 data.in data.out 8"
 TEST3="3. Test mysort (Java) with 8 threads and 16GB of data                             "
-TEST3_ARGS="java 160000000 data.in data.out 8"
+TEST3_ARGS="3 java 160000 data.in data.out 8"
 TEST4="4. Test mysort (Java) with 8 threads and 64GB of data                             "
-TEST4_ARGS="java 640000000 data.in data.out 8"
+TEST4_ARGS="4 java 640000 data.in data.out 8"
 
 NUM_TESTS=4
 
@@ -20,11 +20,12 @@ STATUS=0
 
 TEST()
 {
-    local implementation=$1
-    local numRecords=$2
-    local inputFile=$3
-    local outputFile=$4
-    local numThreads=$5
+    local testnum=$1
+    local implementation=$2
+    local numRecords=$3
+    local inputFile=$4
+    local outputFile=$5
+    local numThreads=$6
     local program=""
     local cmd=""
 

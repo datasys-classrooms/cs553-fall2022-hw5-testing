@@ -93,10 +93,10 @@ CHECK5()
         echo "*** Makefile is missing ***"
         STATUS=2
     else
-        echo -n "" > cpubench.log
-        make clean &>> cpubench.log
-        make &>> cpubench.log
-        local rc=$(cat cpubench.log | grep -E "error:" | wc -l)
+        echo -n "" > mysort.log
+        make clean &>> mysort.log
+        make &>> mysort.log
+        local rc=$(cat mysort.log | grep -E "error:" | wc -l)
         if [ $rc -eq 0 ]
         then
             echo "$MSG passed!" 
