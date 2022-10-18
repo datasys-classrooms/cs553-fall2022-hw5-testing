@@ -47,9 +47,9 @@ TEST()
         local msg2= "*** $program is missing ***"
         echo -e "$msg1\n$msg2"
     else
-        ./gensort -a -b0 -t8 $numRecords data.in
+        ./cs553-fall2022-hw5-testing/gensort -a -b0 -t8 $numRecords data.in
         eval $cmd &> mysort.log
-        ./valsort -t8 -o data.sum data.out &> valsort.log
+        ./cs553-fall2022-hw5-testing/valsort -t8 -o data.sum data.out &> valsort.log
         
         local rc=$(cat valsort.log | grep "SUCCESS" | wc -l)
         if [ $rc -eq 1 ]
@@ -89,7 +89,7 @@ TEST()
     fi
 }
 
-HOW_TO_USE="HOW TO USE: bash test-submission.sh [<check number> | list | all]"
+HOW_TO_USE="HOW TO USE: bash cs553-fall2022-hw5-testing/test-submission.sh [<check number> | list | all]"
 
 if [ $# -ne 1 ]
 then

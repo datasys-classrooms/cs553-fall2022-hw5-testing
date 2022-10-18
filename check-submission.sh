@@ -67,7 +67,7 @@ CHECK3()
 
 CHECK4()
 {
-    MSG="4. Check to see if the mysort script is not modified ...                    "
+    MSG="4. Check to see if the mysort script is not modified ...                      "
     if [ ! -f run-mysort.sh ]
     then
         echo "$MSG failed!"
@@ -111,7 +111,7 @@ CHECK5()
 }
 
 NUM_CHECKS=5
-HOW_TO_USE="HOW TO USE: bash check-submission.sh [<check number> | list | all]"
+HOW_TO_USE="HOW TO USE: bash cs553-fall2022-hw5-testing/check-submission.sh [<check number> | list | all]"
 
 if [ $# -ne 1 ]
 then
