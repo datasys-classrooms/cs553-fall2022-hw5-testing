@@ -16,7 +16,7 @@ TEST4_ARGS="4 java 640000 data.in data.out 8"
 
 NUM_TESTS=4
 
-STATUS=0
+STATUS=11
 
 TEST()
 {
@@ -120,7 +120,7 @@ then
         eval $cmd
     done
     
-    if [ ${STATUS:0:1} -eq 2 ] || [ ${STATUS:1:2} -eq 2 ]
+    if [ ${STATUS:0:1} -eq 3 ] || [ ${STATUS:1:2} -eq 3 ]
     then
         exit 0
     fi
@@ -134,7 +134,7 @@ then
     cmd="TEST ${!var}"
     eval $cmd
     
-    if [ ${STATUS:0:1} -eq 1 ] || [ ${STATUS:1:2} -eq 1 ]
+    if [ ${STATUS:0:1} -eq 2 ] || [ ${STATUS:1:2} -eq 2 ]
     then
         exit 0
     fi
