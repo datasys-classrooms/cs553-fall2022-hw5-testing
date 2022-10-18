@@ -6,13 +6,13 @@ echoerr()
 }
 
 TEST1="1. Test mysort with 8 threads and 1GB of data                                   "
-TEST1_ARGS="1 10000 data.in data.out 8"
+TEST1_ARGS="1 10000000 data.in data.out 8"
 TEST2="2. Test mysort with 8 threads and 4GB of data                                   "
-TEST2_ARGS="2 40000 data.in data.out 8"
+TEST2_ARGS="2 40000000 data.in data.out 8"
 TEST3="3. Test mysort with 8 threads and 16GB of data                                  "
-TEST3_ARGS="3 160000 data.in data.out 8"
+TEST3_ARGS="3 160000000 data.in data.out 8"
 TEST4="4. Test mysort with 8 threads and 64GB of data                                  "
-TEST4_ARGS="4 640000 data.in data.out 8"
+TEST4_ARGS="4 640000000 data.in data.out 8"
 
 NUM_TESTS=4
 
