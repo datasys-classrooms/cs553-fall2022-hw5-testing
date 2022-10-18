@@ -9,7 +9,7 @@ STATUS=0
 
 CHECK1()
 {
-    MSG="1. Check to see if the README is updated ...                                  "
+    MSG="1. Check to see if the README is updated ...                                    "
     if [ ! -f README.md ]
     then
         echo "$MSG failed!"
@@ -28,7 +28,7 @@ CHECK1()
 
 CHECK2()
 {
-    MSG="2. Check to see if the report is uploaded ...                                 "
+    MSG="2. Check to see if the report is uploaded ...                                   "
     if [ ! -f hw5-report.pdf ]
     then
         echo "$MSG failed!"
@@ -47,15 +47,14 @@ CHECK2()
 
 CHECK3()
 {
-    MSG="3. Check to see if the code is uploaded ...                                   "
-    if [ ! -f MySort.cpp ] && [ ! -f MySort.java ]
+    MSG="3. Check to see if the code is uploaded ...                                     "
+    if [ ! -f mysort.c ]
     then
         echo "$MSG failed!"
         STATUS=2
     else
-        local rc1=$(ls -l MySort.cpp | tr -s ' ' | cut -d ' ' -f5)
-        local rc2=$(ls -l MySort.java | tr -s ' ' | cut -d ' ' -f5)
-        if [ $rc1 -ne 1948 ] || [ $rc2 -ne 2134 ]
+        local rc=$(ls -l mysort.c | tr -s ' ' | cut -d ' ' -f5)
+        if [ $rc -ne 1872 ]
         then
             echo "$MSG passed!" 
         else
@@ -67,7 +66,7 @@ CHECK3()
 
 CHECK4()
 {
-    MSG="4. Check to see if the mysort script is not modified ...                      "
+    MSG="4. Check to see if the mysort script is not modified ...                        "
     if [ ! -f run-mysort.sh ]
     then
         echo "$MSG failed!"
@@ -86,7 +85,7 @@ CHECK4()
 
 CHECK5()
 {
-    MSG="5. Check to see if the code compiles ...                                      "
+    MSG="5. Check to see if the code compiles ...                                        "
     if [ ! -f Makefile ]
     then
         echo "$MSG failed!"

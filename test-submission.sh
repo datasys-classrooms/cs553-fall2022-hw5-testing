@@ -5,41 +5,28 @@ echoerr()
     echo "$@" >&2
 }
 
-TEST1="1. Test mysort (C++) with 8 threads and 16GB of data                          "
-TEST1_ARGS="1 cpp 160000 data.in data.out 8"
-TEST2="2. Test mysort (C++) with 8 threads and 64GB of data                          "
-TEST2_ARGS="2 cpp 640000 data.in data.out 8"
-TEST3="3. Test mysort (Java) with 8 threads and 16GB of data                         "
-TEST3_ARGS="3 java 160000 data.in data.out 8"
-TEST4="4. Test mysort (Java) with 8 threads and 64GB of data                         "
-TEST4_ARGS="4 java 640000 data.in data.out 8"
+TEST1="1. Test mysort with 8 threads and 1GB of data                                   "
+TEST1_ARGS="1 10000 data.in data.out 8"
+TEST2="2. Test mysort with 8 threads and 4GB of data                                   "
+TEST2_ARGS="2 40000 data.in data.out 8"
+TEST3="3. Test mysort with 8 threads and 16GB of data                                  "
+TEST3_ARGS="3 160000 data.in data.out 8"
+TEST4="4. Test mysort with 8 threads and 64GB of data                                  "
+TEST4_ARGS="4 640000 data.in data.out 8"
 
 NUM_TESTS=4
 
-STATUS=11
+STATUS=0
 
 TEST()
 {
     local testnum=$1
-    local implementation=$2
-    local numRecords=$3
-    local inputFile=$4
-    local outputFile=$5
-    local numThreads=$6
-    local program=""
-    local cmd=""
-
-    if [ "$implementation" == "cpp" ]
-    then
-        program="mysort"
-        cmd="./mysort $inputFile $outputFile $numThreads"
-    fi
-
-    if [ "$implementation" == "java" ]
-    then
-        program="mysort.jar"
-        cmd="java -cp mysort.jar MySort $inputFile $outputFile $numThreads"
-    fi
+    local numRecords=$2
+    local inputFile=$3
+    local outputFile=$4
+    local numThreads=$5
+    local program="mysort"
+    local cmd="./mysort $inputFile $outputFile $numThreads"
 
     if [ ! -f $program ]
     then
@@ -57,24 +44,7 @@ TEST()
         then
             local var="TEST$testnum"
             local msg1="${!var} passed!"
-            local msg2="*** Test $testnum run log ***"
-            local msg3=">>> ./gensort -a -b0 -t8 $numRecords data.in"
-            local msg4=">>> $cmd"
-            local msg5=$(cat mysort.log)
-            local msg6=">>> ./valsort -t8 -o data.sum data.out"
-            local msg7=$(cat valsort.log)
-            local msg8="*** Sort successful ***"
-            echo -e "$msg1\n$msg2\n$msg3\n$msg4\n$msg5\n$msg6\n$msg7\n$msg8"
-
-            if [ "$implementation" == "cpp" ]
-            then
-                STATUS=$(($STATUS + 1))
-            fi
-
-            if [ "$implementation" == "java" ]
-            then
-                STATUS=$(($STATUS + 10))
-            fi
+            echo -e "$msg1\n"
         else
             local var="TEST$testnum"
             local msg1="${!var} failed!"
@@ -84,8 +54,9 @@ TEST()
             local msg5=$(cat mysort.log)
             local msg6=">>> ./valsort -t8 -o data.sum data.out"
             local msg7=$(cat valsort.log)
-            local msg8="*** Sort failed ***"
+            local msg8="*** *** ***"
             echo -e "$msg1\n$msg2\n$msg3\n$msg4\n$msg5\n$msg6\n$msg7\n$msg8"
+            STATUS=1
         fi
     fi
 }
@@ -120,12 +91,12 @@ then
         eval $cmd
     done
     
-    if [ ${STATUS:0:1} -eq 3 ] || [ ${STATUS:1:2} -eq 3 ]
+    if [ $STATUS -ne 0 ]
     then
-        exit 0
+        exit 1
     fi
     
-    exit 1
+    exit 0
 fi
 
 if [ $arg1 -eq $arg1 ]
@@ -134,12 +105,12 @@ then
     cmd="TEST ${!var}"
     eval $cmd
     
-    if [ ${STATUS:0:1} -eq 2 ] || [ ${STATUS:1:2} -eq 2 ]
+    if [ $STATUS -ne 0 ]
     then
-        exit 0
+        exit 1
     fi
     
-    exit 1
+    exit 0
 else
     echoerr "$HOW_TO_USE"
     exit 2
