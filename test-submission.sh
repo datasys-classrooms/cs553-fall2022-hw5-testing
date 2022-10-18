@@ -5,13 +5,13 @@ echoerr()
     echo "$@" >&2
 }
 
-TEST1="1. Test mysort (C++) with 8 threads and 16GB of data                              "
+TEST1="1. Test mysort (C++) with 8 threads and 16GB of data                          "
 TEST1_ARGS="1 cpp 160000 data.in data.out 8"
-TEST2="2. Test mysort (C++) with 8 threads and 64GB of data                              "
+TEST2="2. Test mysort (C++) with 8 threads and 64GB of data                          "
 TEST2_ARGS="2 cpp 640000 data.in data.out 8"
-TEST3="3. Test mysort (Java) with 8 threads and 16GB of data                             "
+TEST3="3. Test mysort (Java) with 8 threads and 16GB of data                         "
 TEST3_ARGS="3 java 160000 data.in data.out 8"
-TEST4="4. Test mysort (Java) with 8 threads and 64GB of data                             "
+TEST4="4. Test mysort (Java) with 8 threads and 64GB of data                         "
 TEST4_ARGS="4 java 640000 data.in data.out 8"
 
 NUM_TESTS=4
@@ -58,10 +58,10 @@ TEST()
             local var="TEST$testnum"
             local msg1="${!var} passed!"
             local msg2="*** Test $testnum run log ***"
-            local msg3="./gensort -a -b0 -t8 $numRecords data.in"
-            local msg4="$cmd"
+            local msg3=">>> ./gensort -a -b0 -t8 $numRecords data.in"
+            local msg4=">>> $cmd"
             local msg5=$(cat mysort.log)
-            local msg6="./valsort -t8 -o data.sum data.out"
+            local msg6=">>> ./valsort -t8 -o data.sum data.out"
             local msg7=$(cat valsort.log)
             local msg8="*** Sort successful ***"
             echo -e "$msg1\n$msg2\n$msg3\n$msg4\n$msg5\n$msg6\n$msg7\n$msg8"
@@ -79,10 +79,10 @@ TEST()
             local var="TEST$testnum"
             local msg1="${!var} failed!"
             local msg2="*** Test $testnum run log ***"
-            local msg3="> ./gensort -a -b0 -t8 $numRecords data.in"
-            local msg4="> $cmd"
+            local msg3=">>> ./gensort -a -b0 -t8 $numRecords data.in"
+            local msg4=">>> $cmd"
             local msg5=$(cat mysort.log)
-            local msg6="> ./valsort -t8 -o data.sum data.out"
+            local msg6=">>> ./valsort -t8 -o data.sum data.out"
             local msg7=$(cat valsort.log)
             local msg8="*** Sort failed ***"
             echo -e "$msg1\n$msg2\n$msg3\n$msg4\n$msg5\n$msg6\n$msg7\n$msg8"
