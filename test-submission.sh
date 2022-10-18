@@ -44,7 +44,9 @@ TEST()
         then
             local var="TEST$testnum"
             local msg1="${!var} passed!"
-            echo -e "$msg1\n"
+            local msg2=">>> $cmd"
+            local msg3=$(cat mysort.log)
+            echo -e "$msg1\n$msg2\n$msg3"
         else
             local var="TEST$testnum"
             local msg1="${!var} failed!"
