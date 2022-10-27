@@ -102,7 +102,7 @@ CHECK5()
         else
             echo "$MSG failed!"
             echo "*** Check 5 run log ***"
-            cat cpubench.log
+            cat mysort.log
             echo "*** End of log ***"
             STATUS=1
         fi
